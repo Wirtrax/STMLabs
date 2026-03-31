@@ -1,0 +1,9 @@
+@use 'normalize';
+@use 'fonts';
+@use 'variables';
+@use 'utils';
+@use 'globals';
+
+@use './blocks/background';
+@use './blocks/tableSearch';
+@use './blocks/table';

@@ -1,0 +1,450 @@
+@charset "UTF-8";
+@import url("https://fonts.googleapis.com/css2?family=Onest:wght@100..900&display=swap");
+/**
+  Нормализация блочной модели
+ */
+*,
+::before,
+::after {
+  box-sizing: border-box;
+}
+
+/**
+  Убираем внутренние отступы слева тегам списков,
+  у которых есть атрибут class
+ */
+:where(ul, ol):where([class]) {
+  padding-left: 0;
+}
+
+/**
+  Убираем внешние отступы body и двум другим тегам,
+  у которых есть атрибут class
+ */
+body,
+:where(blockquote, figure):where([class]) {
+  margin: 0;
+}
+
+/**
+  Убираем внешние отступы вертикали нужным тегам,
+  у которых есть атрибут class
+ */
+:where(h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+ul,
+ol,
+dl):where([class]) {
+  margin-block: 0;
+}
+
+:where(dd[class]) {
+  margin-left: 0;
+}
+
+:where(fieldset[class]) {
+  margin-left: 0;
+  padding: 0;
+  border: none;
+}
+
+/**
+  Убираем стандартный маркер маркированному списку,
+  у которого есть атрибут class
+ */
+:where(ul[class]) {
+  list-style: none;
+}
+
+:where(address[class]) {
+  font-style: normal;
+}
+
+/**
+  Обнуляем вертикальные внешние отступы параграфа,
+  объявляем локальную переменную для внешнего отступа вниз,
+  чтобы избежать взаимодействие с более сложным селектором
+ */
+p {
+  --paragraphMarginBottom: 24px;
+  margin-block: 0;
+}
+
+/**
+  Внешний отступ вниз для параграфа без атрибута class,
+  который расположен не последним среди своих соседних элементов
+ */
+:where(p:not([class]):not(:last-child)) {
+  margin-bottom: var(--paragraphMarginBottom);
+}
+
+/**
+  Упрощаем работу с изображениями и видео
+ */
+img,
+video {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+/**
+  Наследуем свойства шрифт для полей ввода
+ */
+input,
+textarea,
+select,
+button {
+  font: inherit;
+}
+
+html {
+  /**
+   Пригодится в большинстве ситуаций
+   (когда, например, нужно будет "прижать" футер к низу сайта)
+  */
+  height: 100%;
+  /**
+   Убираем скачок интерфейса по горизонтали
+   при появлении / исчезновении скроллбара
+  */
+  scrollbar-gutter: stable;
+}
+
+/**
+  Плавный скролл
+ */
+html,
+:has(:target) {
+  scroll-behavior: smooth;
+}
+
+body {
+  /**
+   Пригодится в большинстве ситуаций
+   (когда, например, нужно будет "прижать" футер к низу сайта)
+  */
+  min-height: 100%;
+  /**
+   Унифицированный интерлиньяж
+  */
+  line-height: 1.5;
+}
+
+/**
+  Нормализация высоты элемента ссылки при его инспектировании в DevTools
+ */
+a:where([class]) {
+  display: inline-flex;
+}
+
+/**
+  Курсор-рука при наведении на элемент
+ */
+button,
+label {
+  cursor: pointer;
+}
+
+/**
+  Приводим к единому цвету svg-элементы
+  (за исключением тех, у которых уже указан
+  атрибут fill со значением 'none' или начинается с 'url')
+ */
+:where([fill]:not([fill=none],
+[fill^=url])) {
+  fill: currentColor;
+}
+
+/**
+  Приводим к единому цвету svg-элементы
+  (за исключением тех, у которых уже указан
+  атрибут stroke со значением 'none')
+ */
+:where([stroke]:not([stroke=none],
+[stroke^=url])) {
+  stroke: currentColor;
+}
+
+/**
+  Чиним баг задержки смены цвета при взаимодействии с svg-элементами
+ */
+svg * {
+  transition-property: fill, stroke;
+}
+
+/**
+  Приведение рамок таблиц в классический 'collapse' вид
+ */
+:where(table) {
+  border-collapse: collapse;
+  border-color: currentColor;
+}
+
+/**
+  Удаляем все анимации и переходы для людей,
+  которые предпочитают их не использовать
+ */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  ::before,
+  ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+:root {
+  --color-white: #FFFFFF;
+  --color-black: #000000;
+  --color-dark-1: #1E1E1E;
+  --color-dark-2: #2C2C2C;
+  --color-gray-1: #F5F5F5;
+  --color-gray-trasp-2: #d9d9d996;
+  --color-gray-2: #D9D9D9;
+  --color-gray-3: #B3B3B3;
+  --color-gray-4: #757575;
+  --border: 1px solid var(--color-dark-2);
+  --border-radius: 8px;
+  --box-shadow: 0 4px 4px -4px rgba(12, 12, 13, 0.05), 0 16px 32px -4px rgba(12, 12, 13, 0.1);
+  --font-family: "Onest", sans-serif;
+  --input-height: 40px;
+  --transition-duration: 0.2s;
+  --container-width: 101.25rem;
+  --container-padding-x: 1rem;
+  --container-padding: 0.625rem;
+  --transition-duration: 0.2s;
+}
+@media (width <= 90.06125rem) {
+  :root {
+    --container-width: 62.5rem;
+  }
+}
+@media (width <= 63.99875rem) {
+  :root {
+    --container-width: 37.5rem;
+  }
+}
+
+.container {
+  max-width: calc(var(--container-width) + var(--container-padding-x) * 2);
+  margin-inline: auto;
+  padding-inline: var(--container-padding-x);
+}
+
+.visually-hidden {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  margin: -1px !important;
+  border: 0 !important;
+  padding: 0 !important;
+  white-space: nowrap !important;
+  clip-path: inset(100%) !important;
+  clip: rect(0 0 0 0) !important;
+  overflow: hidden !important;
+}
+
+@media (width <= 47.99875rem) {
+  .hidden-mobile {
+    display: none !important;
+  }
+}
+
+@media (width > 47.99875rem) {
+  .visible-mobile {
+    display: none !important;
+  }
+}
+
+html {
+  overflow: hidden;
+}
+html.is-lock {
+  overflow: hidden;
+}
+
+body {
+  font-size: clamp(0.9375rem, 0.8897058824rem + 0.1960784314vw, 1.125rem);
+  display: flex;
+  flex-direction: column;
+  padding: clamp(0.1875rem, 0.0919117647rem + 0.3921568627vw, 0.5625rem);
+  font-family: var(--font-family);
+  letter-spacing: -0.03em;
+  color: var(--color-black);
+  background-color: var(--color-white);
+}
+
+main {
+  flex-grow: 1;
+}
+
+h1,
+.h1,
+h2,
+.h2,
+h3,
+.h3,
+h4,
+.h4,
+h5,
+.h5,
+h6,
+.h6 {
+  color: var(--color-black);
+}
+
+h1,
+.h1,
+h2,
+.h2,
+h3,
+.h3 {
+  font-family: var(--font-family);
+  font-weight: 500;
+}
+
+h4,
+.h4,
+h5,
+.h5,
+h6,
+.h6 {
+  font-weight: 600;
+}
+
+h1,
+.h1 {
+  font-size: clamp(1.875rem, 1.237745098rem + 2.614379085vw, 4.375rem);
+  line-height: 1.2;
+}
+
+h2,
+.h2 {
+  font-size: clamp(1.75rem, 1.2720588235rem + 1.9607843137vw, 3.625rem);
+  line-height: 1.3;
+}
+
+h3,
+.h3 {
+  font-size: clamp(1.5rem, 1.2450980392rem + 1.045751634vw, 2.5rem);
+}
+
+h4,
+.h4 {
+  font-size: clamp(1.125rem, 0.9975490196rem + 0.522875817vw, 1.625rem);
+}
+
+h5,
+.h5 {
+  font-size: clamp(1.125rem, 1.0294117647rem + 0.3921568627vw, 1.5rem);
+}
+
+h6,
+.h6 {
+  font-size: clamp(1rem, 0.9362745098rem + 0.2614379085vw, 1.25rem);
+}
+
+a,
+button,
+label,
+input,
+textarea,
+select,
+svg * {
+  transition-duration: var(--transition-duration);
+}
+
+a {
+  color: inherit;
+}
+@media (any-hover: hover) {
+  a:hover {
+    color: var(--color-gray-1);
+  }
+}
+@media (any-hover: none) {
+  a:active {
+    color: var(--color-gray-1);
+  }
+}
+a[class] {
+  text-decoration: none;
+}
+
+:focus-visible {
+  outline: 0.125rem dashed var(--color-dark-2);
+  outline-offset: 0.25rem;
+  transition-duration: 0s !important;
+}
+
+a[aria-lable],
+button[aria-lable] {
+  position: relative;
+}
+a[aria-lable]::before,
+button[aria-lable]::before {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  translate: -50% -50%;
+  width: 2.75rem;
+  height: 2.75rem;
+  content: "";
+}
+
+.background {
+  width: var(--container-width);
+  border-radius: var(--boreder-radius);
+  box-shadow: var(--box-shadow);
+  padding: var(--container-padding);
+  margin: 0 auto;
+}
+
+.table-search {
+  width: var(--container-width);
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+  padding: var(--container-padding);
+  margin: 0 auto;
+  background-color: var(--color-gray-trasp-2);
+}
+.table-search__title, .table-search__field {
+  padding: clamp(0.3125rem, 0.2487745098rem + 0.2614379085vw, 0.5625rem);
+  max-width: clamp(12.5rem, 10.9068627451rem + 6.5359477124vw, 18.75rem);
+  overflow-wrap: break-word;
+}
+@media (width <= 63.99875rem) {
+  .table-search__title, .table-search__field {
+    max-width: clamp(6.25rem, 4.6568627451rem + 6.5359477124vw, 12.5rem);
+  }
+}
+.table-search__title {
+  background-color: var(--color-gray-3);
+}
+.table-search__title:not(:last-child) {
+  border-right: var(--border);
+}
+.table-search__title:first-child {
+  border-radius: var(--border-radius) 0 0 0;
+}
+.table-search__title:last-child {
+  border-radius: 0 var(--border-radius) 0 0;
+}
+.table-search__body {
+  border-top: var(--border);
+  text-align: center;
+  border-radius: var(--border-radius);
+}
+
+.main-search {
+  overflow-x: auto;
+}
+
+/*# sourceMappingURL=index.css.map */
