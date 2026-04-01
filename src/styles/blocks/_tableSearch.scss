@@ -1,7 +1,8 @@
 @use "../helpers" as *;
 
 .table-search {
-    width: var(--container-width);
+    width: 100%;
+    max-width: var(--container-width);
     border-radius: var(--border-radius);
     box-shadow: var(--box-shadow);
 

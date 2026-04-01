@@ -1,5 +1,24 @@
 @use "../helpers" as *;
 
-.main-search {
+.main-table {
     overflow-x: auto;
+}
+
+.table-row:hover,
+.table-row:focus {
+    background-color: var(--color-gray-2);
+
+    &:last-child {
+
+        td,
+        th {
+            &:first-child {
+                border-bottom-left-radius: var(--border-radius);
+            }
+
+            &:last-child {
+                border-bottom-right-radius: var(--border-radius);
+            }
+        }
+    }
 }

@@ -34,7 +34,4 @@
         --container-width: #{rem(1000)};
     }
 
-    @include tablet {
-        --container-width: #{rem(600)};
-    }
 }

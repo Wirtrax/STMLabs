@@ -226,11 +226,6 @@ svg * {
     --container-width: 62.5rem;
   }
 }
-@media (width <= 63.99875rem) {
-  :root {
-    --container-width: 37.5rem;
-  }
-}
 
 .container {
   max-width: calc(var(--container-width) + var(--container-padding-x) * 2);
@@ -263,9 +258,6 @@ svg * {
   }
 }
 
-html {
-  overflow: hidden;
-}
 html.is-lock {
   overflow: hidden;
 }
@@ -408,7 +400,8 @@ button[aria-lable]::before {
 }
 
 .table-search {
-  width: var(--container-width);
+  width: 100%;
+  max-width: var(--container-width);
   border-radius: var(--border-radius);
   box-shadow: var(--box-shadow);
   padding: var(--container-padding);
@@ -443,8 +436,76 @@ button[aria-lable]::before {
   border-radius: var(--border-radius);
 }
 
-.main-search {
+.main-table {
   overflow-x: auto;
+}
+
+.table-row:hover,
+.table-row:focus {
+  background-color: var(--color-gray-2);
+}
+.table-row:hover:last-child td:first-child,
+.table-row:hover:last-child th:first-child,
+.table-row:focus:last-child td:first-child,
+.table-row:focus:last-child th:first-child {
+  border-bottom-left-radius: var(--border-radius);
+}
+.table-row:hover:last-child td:last-child,
+.table-row:hover:last-child th:last-child,
+.table-row:focus:last-child td:last-child,
+.table-row:focus:last-child th:last-child {
+  border-bottom-right-radius: var(--border-radius);
+}
+
+.search__form {
+  display: flex;
+  column-gap: 16px;
+}
+
+.search__field {
+  width: 100%;
+}
+
+.search {
+  position: relative;
+}
+.search:has(.search__input:not(:placeholder-shown)) .search__label {
+  color: var(--color-black);
+  scale: 0.7;
+  translate: -1.75em -2.6em;
+}
+
+.search__label {
+  position: absolute;
+  top: 50%;
+  left: 17px;
+  color: var(--color-gray-3);
+  translate: 0 -50%;
+}
+
+.search__input {
+  --searchInputPaddingX: 16px;
+  --searchSeachInputIconSize: 16px;
+  width: 100%;
+  height: var(--input-height);
+  padding-inline: var(--searchInputPaddingX);
+  background-color: transparent;
+  border: var(--border);
+  border-radius: var(--border-radius);
+}
+.search__input:hover, .search__input:focus {
+  border-color: var(--color-dark-2);
+}
+.search__input:focus {
+  background-color: var(--color-gray-1);
+  outline: none;
+}
+.search__input[type=search]:placeholder-shown {
+  padding-right: calc(var(--searchInputPaddingX) * 2 + var(--searchSeachInputIconSize));
+  background-image: url("../../assets/icons/icon-search_black.svg");
+  background-position: calc(100% - var(--searchInputPaddingX)) 50%;
+  background-size: var(--searchSeachInputIconSize);
+  background-repeat: no-repeat;
 }
 
 /*# sourceMappingURL=index.css.map */

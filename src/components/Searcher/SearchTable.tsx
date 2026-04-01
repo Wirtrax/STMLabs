@@ -16,45 +16,32 @@ const SearchTable = () => {
                 <tr className="table-search__body table-row">
                     <SearchTableBody data='dqwd'/>
 
-                    <SearchTableBody data='efwefwefwefwefwefwefwfwefwe
-                    fwefwefwefefwefwfwfwefwefwefwefefwfwefwef'/>
-                    <SearchTableBody data='efwefwefwefwefwefwefwfwefwef
-                    wefwefwefefwefwfwfwefwefwefwefefwfwefwef'/>
+                    <SearchTableBody data='efwefwefwefwefwefwefwfwefwefwefwefwefefwefwfwfwefwefwefwefefwfwefwef'/>
+                    <SearchTableBody data='efwefwefwefwefwefwefwfwefwefwefwefwefefwefwfwfwefwefwefwefefwfwefwef'/>
                     <SearchTableBody data='sdfefwefwfweffwefefwefwefwfwefwefwe'/>
                     <SearchTableBody data='sdfefwefwfweffwefefwefwefwfwefwefwe'/>
                 </tr>
                 <tr className="table-search__body table-row">
                     <SearchTableBody data='sdfefwefwfweffwefefwefwefwfwefwefwe'/>
 
-                    <SearchTableBody data='sdfefwefwfweffwefefwefw
-                    efwfwefwefwe'/>
                     <SearchTableBody data='sdfefwefwfweffwefefwefwefwfwefwefwe'/>
-                    <SearchTableBody data='efwefwefwefwefwefwefwfwefw
-                    efwefwefwefefwefwfwfwefwefwefwefefwfwefwef'/>
-                    <SearchTableBody data='efwefwefwefwefwefwefwfw
-                    efwefwefwefwefefwefwfwfwefwefwefwefefwfwefwef'/>
+                    <SearchTableBody data='sdfefwefwfweffwefefwefwefwfwefwefwe'/>
+                    <SearchTableBody data='efwefwefwefwefwefwefwfwefwefwefwefwefefwefwfwfwefwefwefwefefwfwefwef'/>
+                    <SearchTableBody data='efwefwefwefwefwefwefwfwefwefwefwefwefefwefwfwfwefwefwefwefefwfwefwef'/>
                 </tr>
                 <tr className="table-search__body table-row">
-                    <SearchTableBody data='efwefwefwefwefwefwefwfwefwefwefwefw
-                    efefwefwfwfwefwefwefwefefwfwefwef'/>
+                    <SearchTableBody data='efwefwefwefwefwefwefwfwefwefwefwefwefefwefwfwfwefwefwefwefefwfwefwef'/>
 
-                    <SearchTableBody data='efwefwefwefwefwefwefwfwefwefwefw
-                    efwefefwefwfwfwefwefwefwefefwfwefwef'/>
-                    <SearchTableBody data='efwefwefwefwefwefwefwfwefwefwef
-                    wefwefefwefwfwfwefwefwefwefefwfwefwef'/>
-                    <SearchTableBody data='efwefwefwefwefwefwefwfwefwefwefwefw
-                    efefwefwfwfwefwefwefwefefwfwefwef'/>
-                    <SearchTableBody data='efwefwefwefwefwefwefwfwefwefwefwef
-                    wefefwefwfwfwefwefwefwefefwfwefwef'/>
+                    <SearchTableBody data='efwefwefwefwefwefwefwfwefwefwefwefwefefwefwfwfwefwefwefwefefwfwefwef'/>
+                    <SearchTableBody data='efwefwefwefwefwefwefwfwefwefwefwefwefefwefwfwfwefwefwefwefefwfwefwef'/>
+                    <SearchTableBody data='efwefwefwefwefwefwefwfwefwefwefwefwefefwefwfwfwefwefwefwefefwfwefwef'/>
+                    <SearchTableBody data='efwefwefwefwefwefwefwfwefwefwefwefwefefwefwfwfwefwefwefwefefwfwefwef'/>
                 </tr>
                 <tr className="table-search__body table-row">
-                    <SearchTableBody data='efwefwefwefwefwefwefwfwefwefwefwefwe
-                    fefwefwfwfwefwefwefwefefwfwefwef'/>
+                    <SearchTableBody data='efwefwefwefwefwefwefwfwefwefwefwefwefefwefwfwfwefwefwefwefefwfwefwef'/>
 
-                    <SearchTableBody data='efwefwefwefwefwefwefwfwefwefwefw
-                    efwefefwefwfwfwefwefwefwefefwfwefwef'/>
-                    <SearchTableBody data='efwefwefwefwefwefwefwfwefwefwefwefwe
-                    fefwefwfwfwefwefwefwefefwfwefwef'/>
+                    <SearchTableBody data='efwefwefwefwefwefwefwfwefwefwefwefwefefwefwfwfwefwefwefwefefwfwefwef'/>
+                    <SearchTableBody data='efwefwefwefwefwefwefwfwefwefwefwefwefefwefwfwfwefwefwefwefefwfwefwef'/>
                     <SearchTableBody data='dqwd'/>
                     <SearchTableBody data='dqwd'/>
                 </tr>

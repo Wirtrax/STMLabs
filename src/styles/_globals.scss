@@ -1,8 +1,6 @@
 @use "helpers" as *;
 
 html {
-    overflow: hidden;
-
     &.is-lock {
         overflow: hidden;
     }
