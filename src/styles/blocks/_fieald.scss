@@ -12,8 +12,9 @@
     position: absolute;
     top: 50%;
     left: 17px;
-    color: var(--color-gray-3);
+    color: transparent;
     translate: 0 -50%;
+    user-select: none
 }
 
 .search__input {

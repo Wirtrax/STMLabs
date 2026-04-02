@@ -458,12 +458,8 @@ button[aria-lable]::before {
 }
 
 .search__form {
-  display: flex;
-  column-gap: 16px;
-}
-
-.search__field {
-  width: 100%;
+  width: clamp(18.75rem, 15.5637254902rem + 13.0718954248vw, 31.25rem);
+  margin: clamp(0.625rem, 0.306372549rem + 1.3071895425vw, 1.875rem) auto;
 }
 
 .search {
@@ -479,8 +475,9 @@ button[aria-lable]::before {
   position: absolute;
   top: 50%;
   left: 17px;
-  color: var(--color-gray-3);
+  color: transparent;
   translate: 0 -50%;
+  user-select: none;
 }
 
 .search__input {

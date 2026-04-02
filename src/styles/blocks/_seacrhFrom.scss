@@ -1,8 +1,6 @@
-.search__form {
-    display: flex;
-    column-gap: 16px;
-}
+@use "../helpers" as *;
 
-.search__field {
-    width: 100%;
+.search__form {
+    width: fluid(500, 300);
+    margin: fluid(30, 10) auto;
 }

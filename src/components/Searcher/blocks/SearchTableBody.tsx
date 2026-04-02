@@ -1,10 +1,11 @@
 interface ISearchTableBody {
     data: string | number;
+    type?: string
 }
 
-const SearchTableBody = ({ data }: ISearchTableBody) => {
+const SearchTableBody = ({ data, type }: ISearchTableBody) => {
     return (
-        <td className="table-search__field">{data}</td>
+        <td className="table-search__field">{type !== 'image' ? data : <img src={`${data}`} alt="avatar" />}</td>
     );
 }
 

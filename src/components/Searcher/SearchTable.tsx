@@ -1,53 +1,70 @@
+import React, { memo } from 'react';
+import type { ITransformedUser } from '../../../services/api';
 import SearchTableBody from "./blocks/SearchTableBody";
+import SearchTableHead from "./blocks/SearchTableHead";
 
-const SearchTable = () => {
-    return (
-        <table className="table-search">
-            <thead>
-                <tr className="table-search__titles table-row">
-                    <th scope="col" className="table-search__title">Person</th>
-                    <th scope="col" className="table-search__title">Person</th>
-                    <th scope="col" className="table-search__title">Person</th>
-                    <th scope="col" className="table-search__title">Person</th>
-                    <th scope="col" className="table-search__title">Person</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr className="table-search__body table-row">
-                    <SearchTableBody data='dqwd'/>
-
-                    <SearchTableBody data='efwefwefwefwefwefwefwfwefwefwefwefwefefwefwfwfwefwefwefwefefwfwefwef'/>
-                    <SearchTableBody data='efwefwefwefwefwefwefwfwefwefwefwefwefefwefwfwfwefwefwefwefefwfwefwef'/>
-                    <SearchTableBody data='sdfefwefwfweffwefefwefwefwfwefwefwe'/>
-                    <SearchTableBody data='sdfefwefwfweffwefefwefwefwfwefwefwe'/>
-                </tr>
-                <tr className="table-search__body table-row">
-                    <SearchTableBody data='sdfefwefwfweffwefefwefwefwfwefwefwe'/>
-
-                    <SearchTableBody data='sdfefwefwfweffwefefwefwefwfwefwefwe'/>
-                    <SearchTableBody data='sdfefwefwfweffwefefwefwefwfwefwefwe'/>
-                    <SearchTableBody data='efwefwefwefwefwefwefwfwefwefwefwefwefefwefwfwfwefwefwefwefefwfwefwef'/>
-                    <SearchTableBody data='efwefwefwefwefwefwefwfwefwefwefwefwefefwefwfwfwefwefwefwefefwfwefwef'/>
-                </tr>
-                <tr className="table-search__body table-row">
-                    <SearchTableBody data='efwefwefwefwefwefwefwfwefwefwefwefwefefwefwfwfwefwefwefwefefwfwefwef'/>
-
-                    <SearchTableBody data='efwefwefwefwefwefwefwfwefwefwefwefwefefwefwfwfwefwefwefwefefwfwefwef'/>
-                    <SearchTableBody data='efwefwefwefwefwefwefwfwefwefwefwefwefefwefwfwfwefwefwefwefefwfwefwef'/>
-                    <SearchTableBody data='efwefwefwefwefwefwefwfwefwefwefwefwefefwefwfwfwefwefwefwefefwfwefwef'/>
-                    <SearchTableBody data='efwefwefwefwefwefwefwfwefwefwefwefwefefwefwfwfwefwefwefwefefwfwefwef'/>
-                </tr>
-                <tr className="table-search__body table-row">
-                    <SearchTableBody data='efwefwefwefwefwefwefwfwefwefwefwefwefefwefwfwfwefwefwefwefefwfwefwef'/>
-
-                    <SearchTableBody data='efwefwefwefwefwefwefwfwefwefwefwefwefefwefwfwfwefwefwefwefefwfwefwef'/>
-                    <SearchTableBody data='efwefwefwefwefwefwefwfwefwefwefwefwefefwefwfwfwefwefwefwefefwfwefwef'/>
-                    <SearchTableBody data='dqwd'/>
-                    <SearchTableBody data='dqwd'/>
-                </tr>
-            </tbody>
-        </table>
-    );
+interface ISearchTableProps {
+    users: ITransformedUser[];
+    isLoading: boolean;
 }
 
-export default SearchTable;
+const SearchTable: React.FC<ISearchTableProps> = ({ users = [], isLoading }) => {
+    console.log("SearchTable")
+
+    const tableHeaders = [
+        { title: "Фото", },
+        { title: "Имя", },
+        { title: "Локация", },
+        { title: "Email", },
+        { title: "Телефон", },
+        { title: "Дата регистрации", }
+    ];
+    if (isLoading) {
+        return (
+            <div>
+                загрузка
+            </div>
+        )
+    }
+
+    return (
+        <>
+            <table className="table-search">
+                <thead>
+                    <tr className="table-search__titles table-row">
+                        {tableHeaders.map(
+                            (header, index) => (
+                                <SearchTableHead key={index} title={header.title} />
+                            )
+                        )}
+                    </tr>
+                </thead>
+                <tbody>
+                    {
+                        users.length > 0 ? (
+                            users.map((user, index) => (
+                                <tr className="table-search__body table-row" key={index}>
+                                    <SearchTableBody data={user.picture} type='image' />
+                                    <SearchTableBody data={user.name} />
+                                    <SearchTableBody data={user.location} />
+                                    <SearchTableBody data={user.email} />
+                                    <SearchTableBody data={user.phone} />
+                                    <SearchTableBody data={user.registeredDate} />
+                                </tr>
+                            ))
+                        ) : (
+                            <tr>
+                                <td colSpan={tableHeaders.length} style={{ textAlign: 'center' }}>
+                                    совпадений не найдено
+                                </td>
+                            </tr>
+                        )
+                    }
+
+                </tbody>
+            </table>
+        </>
+    )
+}
+
+export default memo(SearchTable)

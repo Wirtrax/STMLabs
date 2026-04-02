@@ -1,7 +1,16 @@
 import { SearchTableInput } from "./SearchTableInput"
+import type { ChangeEvent } from 'react';
 
+interface IPropsSearchTableForm {
+    searchQuery: string;
+    setSearchQuery: (value: string) => void;
+    isDisable: boolean
+}
 
-const SearchTableForm = () => {
+const SearchTableForm = ({ searchQuery, setSearchQuery, isDisable }: IPropsSearchTableForm) => {
+    const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
+        setSearchQuery(event.target.value);
+    };
 
     return (
         <form className="search__form"
@@ -14,8 +23,9 @@ const SearchTableForm = () => {
                 label="Seacrh person"
                 id="new-task"
                 type="search"
-                // value={'searchQuery'}
-                // onInput={(event) => setSearchQuery(event.target.value)}
+                value={searchQuery}
+                onInput={handleInputChange}
+                isDisable={isDisable}
             />
         </form>
     );
