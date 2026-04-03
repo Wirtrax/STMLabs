@@ -5,6 +5,7 @@ import { useDate } from '../hooks/useDate'
 export interface ITransformedUser {
     name: string;
     picture: string;
+    mediumPicture: string,
     location: string;
     email: string;
     phone: string;
@@ -35,6 +36,7 @@ export const getUsers = async (): Promise<{
 
         const transformedUsers: ITransformedUser[] = data.results.map(user => ({
             picture: user.picture.thumbnail,
+            mediumPicture: user.picture.medium,
             name: `${user.name.first} ${user.name.last}`,
             location: `${user.location.state}, ${user.location.city}`,
             email: user.email,
@@ -53,6 +55,4 @@ export const getUsers = async (): Promise<{
             users: []
         };
     }
-
 };
-

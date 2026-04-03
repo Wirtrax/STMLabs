@@ -1,7 +1,8 @@
-import React, { memo } from 'react';
-import type { ITransformedUser } from '../../../services/api';
+import React, { memo } from "react";
+import type { ITransformedUser } from "../../../services/api";
 import SearchTableBody from "./blocks/SearchTableBody";
 import SearchTableHead from "./blocks/SearchTableHead";
+import Loader from "../Loader";
 
 interface ISearchTableProps {
     users: ITransformedUser[];
@@ -9,8 +10,6 @@ interface ISearchTableProps {
 }
 
 const SearchTable: React.FC<ISearchTableProps> = ({ users = [], isLoading }) => {
-    console.log("SearchTable")
-
     const tableHeaders = [
         { title: "Фото", },
         { title: "Имя", },
@@ -19,13 +18,6 @@ const SearchTable: React.FC<ISearchTableProps> = ({ users = [], isLoading }) => 
         { title: "Телефон", },
         { title: "Дата регистрации", }
     ];
-    if (isLoading) {
-        return (
-            <div>
-                загрузка
-            </div>
-        )
-    }
 
     return (
         <>
@@ -40,29 +32,34 @@ const SearchTable: React.FC<ISearchTableProps> = ({ users = [], isLoading }) => 
                     </tr>
                 </thead>
                 <tbody>
-                    {
-                        users.length > 0 ? (
-                            users.map((user, index) => (
-                                <tr className="table-search__body table-row" key={index}>
-                                    <SearchTableBody data={user.picture} type='image' />
-                                    <SearchTableBody data={user.name} />
-                                    <SearchTableBody data={user.location} />
-                                    <SearchTableBody data={user.email} />
-                                    <SearchTableBody data={user.phone} />
-                                    <SearchTableBody data={user.registeredDate} />
-                                </tr>
-                            ))
-                        ) : (
-                            <tr>
-                                <td colSpan={tableHeaders.length} style={{ textAlign: 'center' }}>
-                                    совпадений не найдено
-                                </td>
+                    {isLoading ? (
+                        <tr className="table-search__loader-row">
+                            <td colSpan={tableHeaders.length} className="table-search__loader-cell">
+                                <Loader />
+                                <p className="loader-text">Загрузка данных...</p>
+                            </td>
+                        </tr>
+                    ) : users.length > 0 ? (
+                        users.map((user, index) => (
+                            <tr className="table-search__body table-row" key={index}>
+                                <SearchTableBody data={[user.picture, user.mediumPicture]} type="image" />
+                                <SearchTableBody data={user.name} />
+                                <SearchTableBody data={user.location} />
+                                <SearchTableBody data={user.email} />
+                                <SearchTableBody data={user.phone} />
+                                <SearchTableBody data={user.registeredDate} />
                             </tr>
-                        )
-                    }
-
+                        ))
+                    ) : (
+                        <tr className="table-search__body">
+                            <td colSpan={tableHeaders.length} className="table-search__not-found">
+                                Совпадений не найдено
+                            </td>
+                        </tr>
+                    )}
                 </tbody>
             </table>
+
         </>
     )
 }

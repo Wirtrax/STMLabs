@@ -1,12 +1,13 @@
 @use 'normalize';
 @use 'fonts';
 @use 'variables';
-@use 'utils';
 @use 'globals';
 
-@use './blocks/background';
 @use './blocks/tableSearch';
 @use './blocks/table';
 
 @use './blocks/seacrhFrom';
-@use './blocks/fieald'
+@use './blocks/fieald';
+
+@use '../styles/blocks/tooltipe';
+@use '../styles/blocks/loader.scss'

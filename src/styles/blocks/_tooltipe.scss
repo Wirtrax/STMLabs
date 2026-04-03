@@ -1,0 +1,41 @@
+@use "../helpers" as *;
+
+.table-search__tooltipe {
+    &-container {
+        position: relative;
+        display: inline-block;
+        cursor: pointer;
+    }
+
+    &-avatar {
+        object-fit: cover;
+        transition: transform 0.2s ease;
+
+        &:hover {
+            transform: scale(1.05);
+        }
+    }
+
+    &-wrapper {
+        position: fixed;
+        z-index: 1000;
+        pointer-events: none;
+    }
+
+    &-content {
+        background: white;
+        border-radius: var(--border-radius);
+        box-shadow: var(--box-shadow);
+        padding: fluid(6, 3);
+        border: var(--border);
+        position: relative;
+    }
+
+    &-preview {
+        width: fluid(150, 120);
+        height: fluid(150, 120);
+        object-fit: cover;
+        border-radius: var(--border-radius);
+        display: block;
+    }
+}

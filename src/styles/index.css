@@ -1,35 +1,19 @@
-@charset "UTF-8";
 @import url("https://fonts.googleapis.com/css2?family=Onest:wght@100..900&display=swap");
-/**
-  Нормализация блочной модели
- */
 *,
 ::before,
 ::after {
   box-sizing: border-box;
 }
 
-/**
-  Убираем внутренние отступы слева тегам списков,
-  у которых есть атрибут class
- */
 :where(ul, ol):where([class]) {
   padding-left: 0;
 }
 
-/**
-  Убираем внешние отступы body и двум другим тегам,
-  у которых есть атрибут class
- */
 body,
 :where(blockquote, figure):where([class]) {
   margin: 0;
 }
 
-/**
-  Убираем внешние отступы вертикали нужным тегам,
-  у которых есть атрибут class
- */
 :where(h1,
 h2,
 h3,
@@ -53,10 +37,6 @@ dl):where([class]) {
   border: none;
 }
 
-/**
-  Убираем стандартный маркер маркированному списку,
-  у которого есть атрибут class
- */
 :where(ul[class]) {
   list-style: none;
 }
@@ -65,27 +45,15 @@ dl):where([class]) {
   font-style: normal;
 }
 
-/**
-  Обнуляем вертикальные внешние отступы параграфа,
-  объявляем локальную переменную для внешнего отступа вниз,
-  чтобы избежать взаимодействие с более сложным селектором
- */
 p {
   --paragraphMarginBottom: 24px;
   margin-block: 0;
 }
 
-/**
-  Внешний отступ вниз для параграфа без атрибута class,
-  который расположен не последним среди своих соседних элементов
- */
 :where(p:not([class]):not(:last-child)) {
   margin-bottom: var(--paragraphMarginBottom);
 }
 
-/**
-  Упрощаем работу с изображениями и видео
- */
 img,
 video {
   display: block;
@@ -93,9 +61,6 @@ video {
   height: auto;
 }
 
-/**
-  Наследуем свойства шрифт для полей ввода
- */
 input,
 textarea,
 select,
@@ -104,92 +69,48 @@ button {
 }
 
 html {
-  /**
-   Пригодится в большинстве ситуаций
-   (когда, например, нужно будет "прижать" футер к низу сайта)
-  */
   height: 100%;
-  /**
-   Убираем скачок интерфейса по горизонтали
-   при появлении / исчезновении скроллбара
-  */
   scrollbar-gutter: stable;
 }
 
-/**
-  Плавный скролл
- */
 html,
 :has(:target) {
   scroll-behavior: smooth;
 }
 
 body {
-  /**
-   Пригодится в большинстве ситуаций
-   (когда, например, нужно будет "прижать" футер к низу сайта)
-  */
   min-height: 100%;
-  /**
-   Унифицированный интерлиньяж
-  */
   line-height: 1.5;
 }
 
-/**
-  Нормализация высоты элемента ссылки при его инспектировании в DevTools
- */
 a:where([class]) {
   display: inline-flex;
 }
 
-/**
-  Курсор-рука при наведении на элемент
- */
 button,
 label {
   cursor: pointer;
 }
 
-/**
-  Приводим к единому цвету svg-элементы
-  (за исключением тех, у которых уже указан
-  атрибут fill со значением 'none' или начинается с 'url')
- */
 :where([fill]:not([fill=none],
 [fill^=url])) {
   fill: currentColor;
 }
 
-/**
-  Приводим к единому цвету svg-элементы
-  (за исключением тех, у которых уже указан
-  атрибут stroke со значением 'none')
- */
 :where([stroke]:not([stroke=none],
 [stroke^=url])) {
   stroke: currentColor;
 }
 
-/**
-  Чиним баг задержки смены цвета при взаимодействии с svg-элементами
- */
 svg * {
   transition-property: fill, stroke;
 }
 
-/**
-  Приведение рамок таблиц в классический 'collapse' вид
- */
 :where(table) {
   border-collapse: collapse;
   border-color: currentColor;
 }
 
-/**
-  Удаляем все анимации и переходы для людей,
-  которые предпочитают их не использовать
- */
 @media (prefers-reduced-motion: reduce) {
   *,
   ::before,
@@ -227,37 +148,6 @@ svg * {
   }
 }
 
-.container {
-  max-width: calc(var(--container-width) + var(--container-padding-x) * 2);
-  margin-inline: auto;
-  padding-inline: var(--container-padding-x);
-}
-
-.visually-hidden {
-  position: absolute !important;
-  width: 1px !important;
-  height: 1px !important;
-  margin: -1px !important;
-  border: 0 !important;
-  padding: 0 !important;
-  white-space: nowrap !important;
-  clip-path: inset(100%) !important;
-  clip: rect(0 0 0 0) !important;
-  overflow: hidden !important;
-}
-
-@media (width <= 47.99875rem) {
-  .hidden-mobile {
-    display: none !important;
-  }
-}
-
-@media (width > 47.99875rem) {
-  .visible-mobile {
-    display: none !important;
-  }
-}
-
 html.is-lock {
   overflow: hidden;
 }
@@ -275,128 +165,6 @@ body {
 
 main {
   flex-grow: 1;
-}
-
-h1,
-.h1,
-h2,
-.h2,
-h3,
-.h3,
-h4,
-.h4,
-h5,
-.h5,
-h6,
-.h6 {
-  color: var(--color-black);
-}
-
-h1,
-.h1,
-h2,
-.h2,
-h3,
-.h3 {
-  font-family: var(--font-family);
-  font-weight: 500;
-}
-
-h4,
-.h4,
-h5,
-.h5,
-h6,
-.h6 {
-  font-weight: 600;
-}
-
-h1,
-.h1 {
-  font-size: clamp(1.875rem, 1.237745098rem + 2.614379085vw, 4.375rem);
-  line-height: 1.2;
-}
-
-h2,
-.h2 {
-  font-size: clamp(1.75rem, 1.2720588235rem + 1.9607843137vw, 3.625rem);
-  line-height: 1.3;
-}
-
-h3,
-.h3 {
-  font-size: clamp(1.5rem, 1.2450980392rem + 1.045751634vw, 2.5rem);
-}
-
-h4,
-.h4 {
-  font-size: clamp(1.125rem, 0.9975490196rem + 0.522875817vw, 1.625rem);
-}
-
-h5,
-.h5 {
-  font-size: clamp(1.125rem, 1.0294117647rem + 0.3921568627vw, 1.5rem);
-}
-
-h6,
-.h6 {
-  font-size: clamp(1rem, 0.9362745098rem + 0.2614379085vw, 1.25rem);
-}
-
-a,
-button,
-label,
-input,
-textarea,
-select,
-svg * {
-  transition-duration: var(--transition-duration);
-}
-
-a {
-  color: inherit;
-}
-@media (any-hover: hover) {
-  a:hover {
-    color: var(--color-gray-1);
-  }
-}
-@media (any-hover: none) {
-  a:active {
-    color: var(--color-gray-1);
-  }
-}
-a[class] {
-  text-decoration: none;
-}
-
-:focus-visible {
-  outline: 0.125rem dashed var(--color-dark-2);
-  outline-offset: 0.25rem;
-  transition-duration: 0s !important;
-}
-
-a[aria-lable],
-button[aria-lable] {
-  position: relative;
-}
-a[aria-lable]::before,
-button[aria-lable]::before {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  translate: -50% -50%;
-  width: 2.75rem;
-  height: 2.75rem;
-  content: "";
-}
-
-.background {
-  width: var(--container-width);
-  border-radius: var(--boreder-radius);
-  box-shadow: var(--box-shadow);
-  padding: var(--container-padding);
-  margin: 0 auto;
 }
 
 .table-search {
@@ -434,6 +202,15 @@ button[aria-lable]::before {
   border-top: var(--border);
   text-align: center;
   border-radius: var(--border-radius);
+}
+.table-search__not-found {
+  text-align: center;
+  color: var(--color-gray-4);
+  padding: clamp(0.625rem, 0.306372549rem + 1.3071895425vw, 1.875rem);
+}
+.table-search__loader-cell {
+  text-align: center;
+  padding: clamp(0.625rem, 0.306372549rem + 1.3071895425vw, 1.875rem);
 }
 
 .main-table {
@@ -503,6 +280,72 @@ button[aria-lable]::before {
   background-position: calc(100% - var(--searchInputPaddingX)) 50%;
   background-size: var(--searchSeachInputIconSize);
   background-repeat: no-repeat;
+}
+
+.table-search__tooltipe-container {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+}
+.table-search__tooltipe-avatar {
+  object-fit: cover;
+  transition: transform 0.2s ease;
+}
+.table-search__tooltipe-avatar:hover {
+  transform: scale(1.05);
+}
+.table-search__tooltipe-wrapper {
+  position: fixed;
+  z-index: 1000;
+  pointer-events: none;
+}
+.table-search__tooltipe-content {
+  background: white;
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+  padding: clamp(0.1875rem, 0.1397058824rem + 0.1960784314vw, 0.375rem);
+  border: var(--border);
+  position: relative;
+}
+.table-search__tooltipe-preview {
+  width: clamp(7.5rem, 7.0220588235rem + 1.9607843137vw, 9.375rem);
+  height: clamp(7.5rem, 7.0220588235rem + 1.9607843137vw, 9.375rem);
+  object-fit: cover;
+  border-radius: var(--border-radius);
+  display: block;
+}
+
+.loader {
+  width: clamp(2.25rem, 2.0588235294rem + 0.7843137255vw, 3rem);
+  height: clamp(2.25rem, 2.0588235294rem + 0.7843137255vw, 3rem);
+  border: 3px solid #000000;
+  border-radius: 50%;
+  display: inline-block;
+  position: relative;
+  box-sizing: border-box;
+  animation: rotation 1s linear infinite !important;
+}
+.loader::after {
+  content: "";
+  box-sizing: border-box;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: clamp(2.625rem, 2.4019607843rem + 0.9150326797vw, 3.5rem);
+  height: clamp(2.625rem, 2.4019607843rem + 0.9150326797vw, 3.5rem);
+  border-radius: 50%;
+  border: 3px solid;
+  border-color: #a2a8f7 transparent;
+}
+
+@keyframes rotation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 /*# sourceMappingURL=index.css.map */

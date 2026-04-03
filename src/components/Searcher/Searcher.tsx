@@ -8,8 +8,6 @@ import SearchTable from "./SearchTable";
 
 
 const Searcher = () => {
-    console.log("Searcher")
-
     const [loading, setLoading] = useState<boolean>(false);
     const [users, setUsers] = useState<ITransformedUser[]>([]);
     const [searchQuery, setSearchQuery] = useState<string>('');
@@ -25,16 +23,13 @@ const Searcher = () => {
     };
 
     useEffect(() => {
-        console.log("Searcher useEffect")
         const fetchUsers = async () => {
             try {
                 setLoading(true)
-                console.log("Searcher fetch start")
                 const response = await getUsers();
 
                 if (response.success) {
                     setUsers(response.users)
-                    console.log("Searcher fetch end")
                 }
             } catch (error) {
                 console.log('fetch error:', error);
@@ -52,10 +47,7 @@ const Searcher = () => {
         const searchLower = debouncedSearchQuery.toLowerCase();
 
         return users.filter(user =>
-            user.name.toLowerCase().includes(searchLower) ||
-            user.email.toLowerCase().includes(searchLower) ||
-            user.location.toLowerCase().includes(searchLower) ||
-            user.phone.includes(debouncedSearchQuery)
+            user.name.toLowerCase().includes(searchLower)
         );
     }, [users, debouncedSearchQuery]);
 
